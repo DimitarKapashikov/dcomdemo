@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: content
+data:
+  index.html: |
+    <html>
+        <head>
+            <title>ArgoCDaaS</title>
+        </head>
+        <body>
+            <h1>Try it yourself!</h1>
+            <img src="https://github.com/hs-martinbg/dcomdemo/blob/main/ArgoCDQR.png">
+        </body>
+    </html>
