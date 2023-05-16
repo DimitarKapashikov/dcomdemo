@@ -1,1 +1,1 @@
-# dcomdemo
+Dcom Demo app
