@@ -12,5 +12,6 @@ data:
         <body>
             <h1>Try it yourself!</h1>
             <img src="https://raw.githubusercontent.com/hs-martinbg/dcomdemo/main/ArgoCDQR.png">
+            <p>something</p>
         </body>
     </html>
