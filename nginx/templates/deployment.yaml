@@ -34,8 +34,8 @@ spec:
         {{- end }}
         {{- if and .Values.serverBlock (not .Values.existingServerBlockConfigmap) }}
         checksum/server-block-configuration: {{ include (print $.Template.BasePath "/server-block-configmap.yaml") . | sha256sum }}
-        checksum/cm: {{ include (print $.Template.BasePath "/content.yaml") . | sha256sum }}
         {{- end }}
+        checksum/cm: {{ include (print $.Template.BasePath "/content.yaml") . | sha256sum }}
     spec:
       {{- include "nginx.imagePullSecrets" . | nindent 6 }}
       automountServiceAccountToken: {{ .Values.serviceAccount.automountServiceAccountToken }}
