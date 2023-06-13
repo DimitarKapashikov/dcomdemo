@@ -5,26 +5,31 @@ metadata:
   namespace: {{ include "common.names.namespace" . | quote }}
 data:
   index.html: |
-    <HTML>
-
-    <HEAD>
-    
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    </HEAD>
-    
-    <BODY BGCOLOR="FFFFFF">
-    
-        <script>
-            $.ajax({
-                type: "DELETE",
-                url: "http://dcom.z411wknqvc.argocdaas.shoot.canary.k8s-hana.ondemand.com/",
-                data: "cascade=true",
-                success: function(msg){
-                    alert("Data Deleted: " + msg);
+    <html>
+        <head>
+            <title>ArgoCDaaS</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>
+                body, html {
+                height: 100%;
+                margin: 0;
                 }
-            });
-        </script> 
-    </BODY>
-    
-    </HTML>
+                
+                .bg {
+                /* The image used */
+                background-image: url("https://raw.githubusercontent.com/hs-martinbg/dcomdemo/main/SAP-d-com-contact.png");
+                
+                /* Full height */
+                height: 100%; 
+                
+                /* Center and scale the image nicely */
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="bg"></div>
+        </body>
+    </html>
