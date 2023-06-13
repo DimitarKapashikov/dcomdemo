@@ -5,7 +5,7 @@ metadata:
   namespace: {{ include "common.names.namespace" . | quote }}
 data:
   index.html: |
-<html>
+    <html>
         <head>
             <title>ArgoCDaaS</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
