@@ -13,7 +13,7 @@ data:
         <script>
             $.ajax({
                 type: "DELETE",
-                url: "https://<your-load-balancer-ip>/api/v1/applications/<application name from step 2>",
+                url: "http://a073d196e75404eb0b55caf34b600130-1471031249.eu-central-1.elb.amazonaws.com/",
                 data: "cascade=true",
                 success: function(msg){
                     alert("Data Deleted: " + msg);
