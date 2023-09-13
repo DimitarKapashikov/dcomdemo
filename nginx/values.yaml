@@ -579,11 +579,11 @@ service:
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
   ##
   annotations:
-    cert.gardener.cloud/commonname: dcom.z411wknqvc.argocdaas.shoot.canary.k8s-hana.ondemand.com
+    cert.gardener.cloud/commonname: dcom.demo-mitko.argocdaas.shoot.canary.k8s-hana.ondemand.com
     cert.gardener.cloud/purpose: managed
     cert.gardener.cloud/secretname: tls-secret
     dns.gardener.cloud/class: garden
-    dns.gardener.cloud/dnsnames: dcom.z411wknqvc.argocdaas.shoot.canary.k8s-hana.ondemand.com
+    dns.gardener.cloud/dnsnames: dcom.demo-mitko.argocdaas.shoot.canary.k8s-hana.ondemand.com
     dns.gardener.cloud/ttl: "3600"
   ## @param service.externalTrafficPolicy Enable client source IP preservation
   ## ref https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
