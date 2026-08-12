@@ -1,0 +1,75 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dcomdemo-nginx-demo1
+  namespace: sf-ea092230-01c1-4097-90d0-28158151f95f
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/DimitarKapashikov/dcomdemo.git
+    path: nginx
+    targetRevision: main
+    helm:
+      values: |
+        image:
+          tag: latest
+
+        ingress:
+          enabled: false
+
+        containerPorts:
+          http: 8080
+          https: 8443
+
+        service:
+          type: LoadBalancer
+          ports:
+            http: 80
+            https: 443
+          targetPort:
+            http: http
+            https: https
+          annotations:
+            service.beta.kubernetes.io/aws-load-balancer-type: nlb
+            dns.gardener.cloud/class: garden
+            dns.gardener.cloud/dnsnames: demo1.argocd.argocd-dev.shoot.canary.k8s-hana.ondemand.com
+            dns.gardener.cloud/ttl: "3600"
+            cert.gardener.cloud/commonname: demo1.argocd.argocd-dev.shoot.canary.k8s-hana.ondemand.com
+            cert.gardener.cloud/purpose: managed
+            cert.gardener.cloud/secretname: tls-secret
+
+        extraVolumes:
+          - name: tls-secret
+            secret:
+              secretName: tls-secret
+
+        extraVolumeMounts:
+          - name: tls-secret
+            mountPath: /opt/bitnami/nginx/certs
+            readOnly: true
+
+        serverBlock: |-
+          server {
+            listen 0.0.0.0:8080;
+            listen 0.0.0.0:8443 ssl;
+            root /app;
+            index index.html;
+
+            ssl_certificate     /opt/bitnami/nginx/certs/tls.crt;
+            ssl_certificate_key /opt/bitnami/nginx/certs/tls.key;
+
+            location / {
+              try_files $uri $uri/ /index.html;
+            }
+          }
+  destination:
+    server: https://api.argocd.argocd-dev.shoot.canary.k8s-hana.ondemand.com
+    namespace: dcomdemo-nginx-demo1
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
+
